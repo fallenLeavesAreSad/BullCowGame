@@ -13,7 +13,7 @@ int32 FBullCowGame::GetHiddenWordLength() const { return MyHiddenWord.length(); 
 
 void FBullCowGame::Reset(){
 	//TODO: modify this function
-	constexpr int32 MAX_TRIES = 8;
+	constexpr int32 MAX_TRIES = 5;
 	const FString HIDDEN_WORD = "trench";
 	MyHiddenWord = HIDDEN_WORD;
 	MaxTries = MAX_TRIES;
