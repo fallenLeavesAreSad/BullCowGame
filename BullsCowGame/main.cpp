@@ -28,7 +28,6 @@ int main(){
 
 //introduce player to the game
 void PrintIntro(){
-	
 	std::cout << "Welcome to Bulls and Cows, a fun word game.\n";
 	std::cout << std::endl;
 	std::cout << "          }   {         ___ " << std::endl;
