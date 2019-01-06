@@ -1,3 +1,4 @@
+#pragma once
 #include "FBullCowGame.h"
 #include<map>
 #define TMap std::map
@@ -6,17 +7,18 @@ FBullCowGame::FBullCowGame(){
 	Reset();
 }
 
-int32 FBullCowGame::GetMaxTries() const{ return MaxTries; }
 int32 FBullCowGame::GetCurrentTry() const{ return MyCurrentTry; }
 bool FBullCowGame::IsGameWon() const { return bWinStatus; }
 int32 FBullCowGame::GetHiddenWordLength() const { return MyHiddenWord.length(); }
 
+int32 FBullCowGame::GetMaxTries() const {
+	TMap<int32, int32> WordLengthToMaxTries{ {4,6}, {5,10}, {6,15}, {7,20} };
+	return WordLengthToMaxTries[GetHiddenWordLength()]; 
+}
+
 void FBullCowGame::Reset(){
-	//TODO: modify this function
-	constexpr int32 MAX_TRIES = 5;
 	const FString HIDDEN_WORD = "trench";
 	MyHiddenWord = HIDDEN_WORD;
-	MaxTries = MAX_TRIES;
 	MyCurrentTry = 1;
 	bWinStatus = false;
 	return;
@@ -39,8 +41,7 @@ EWordStatus FBullCowGame::CheckGuessValidity(FString Guess) const{
 }
 
 // recieves a VALID guess and increments turn and returns count
-FBullCowCount FBullCowGame::SubmitValidGuess(FString Guess)
-{	
+FBullCowCount FBullCowGame::SubmitValidGuess(FString Guess){	
 	MyCurrentTry++;
 	FBullCowCount BullCowCount;	
 	int32 WordLength = MyHiddenWord.length();
@@ -69,8 +70,7 @@ FBullCowCount FBullCowGame::SubmitValidGuess(FString Guess)
 	return BullCowCount;
 }
 
-bool FBullCowGame::IsIsogram(FString Word) const
-{
+bool FBullCowGame::IsIsogram(FString Word) const{
 	if (Word.length() < 1) { return true; }
 
 	TMap<char, bool> LetterSeen;
@@ -86,8 +86,7 @@ bool FBullCowGame::IsIsogram(FString Word) const
 	return true; // for cases like '\0'
 }
 
-bool FBullCowGame::IsLowerCase(FString Word) const
-{
+bool FBullCowGame::IsLowerCase(FString Word) const{
 	for (auto Letter : Word) {
 		if (!islower(Letter)) {
 			return false;
