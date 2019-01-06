@@ -1,6 +1,6 @@
-//Bull and Cow game, naming schemes are according to Unreal Coding Standards
-//Practice Project
+//Naming schemes are in accordance to Unreal's Coding Standard
 
+#pragma once
 #include<iostream>
 #include<string>
 #include"FBullCowGame.h"
