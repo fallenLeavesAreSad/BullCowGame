@@ -54,7 +54,7 @@ FText GetValidGuess(){
 	EWordStatus Status = EWordStatus::Invalid_Status;
 	do {
 		int32 CurrentTry = BCGame.GetCurrentTry();
-		std::cout << "Try " << CurrentTry << ": Enter a guess: ";
+		std::cout << "Try " << CurrentTry << " of " << BCGame.GetMaxTries() << ". Enter a guess: ";
 		getline(std::cin, Guess);
 		Status = BCGame.CheckGuessValidity(Guess);
 		switch (Status) {
@@ -75,7 +75,7 @@ FText GetValidGuess(){
 }
 
 bool bAskToPlayAgain(){
-	std::cout << "Do you want to play again with the same word? (y/n) >";
+	std::cout << "Do you want to play again with the same word? (y/n) > ";
 	FText Response;
 	getline(std::cin, Response);
 	return (Response[0] == 'y') || (Response[0] == 'Y');
